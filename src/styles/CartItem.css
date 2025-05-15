@@ -1,0 +1,124 @@
+.cart-item {
+  display: flex;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-light);
+  transition: background-color 0.2s ease;
+}
+
+.cart-item:hover {
+  background-color: var(--background-secondary);
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: var(--spacing-md);
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-item-info {
+  margin-bottom: var(--spacing-sm);
+}
+
+.cart-item-name {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 4px;
+}
+
+.cart-item-restaurant {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.cart-item-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+.quantity-btn {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  transition: background-color 0.2s ease;
+}
+
+.quantity-btn:hover {
+  background-color: var(--background-secondary);
+}
+
+.quantity {
+  width: 32px;
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+}
+
+.cart-item-price-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.cart-item-price {
+  font-weight: var(--font-weight-medium);
+  color: var(--secondary-color);
+}
+
+.remove-item-btn {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.remove-item-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .cart-item {
+    flex-direction: column;
+  }
+  
+  .cart-item-image {
+    width: 100%;
+    height: 120px;
+    margin-bottom: var(--spacing-sm);
+    margin-right: 0;
+  }
+  
+  .cart-item-actions {
+    margin-top: var(--spacing-sm);
+  }
+}

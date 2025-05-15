@@ -1,0 +1,133 @@
+.cart-page {
+  padding: var(--spacing-xl) 0;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xl);
+  color: var(--secondary-color);
+}
+
+.cart-container {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-xl);
+}
+
+.cart-section-title {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--secondary-dark);
+}
+
+/* Cart Items */
+.cart-items-container {
+  background-color: var(--background-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cart Summary */
+.summary-card {
+  background-color: var(--background-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 10px var(--shadow-color);
+  position: sticky;
+  top: 90px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--spacing-md) 0 var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.continue-shopping {
+  display: block;
+  text-align: center;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.continue-shopping:hover {
+  color: var(--primary-color);
+}
+
+.continue-shopping i {
+  margin-right: 4px;
+}
+
+/* Empty Cart */
+.empty-cart {
+  padding: var(--spacing-xxl) 0;
+}
+
+.empty-cart-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--spacing-md);
+  color: var(--text-secondary);
+}
+
+.empty-cart-content i {
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-md);
+}
+
+.empty-cart-content h2 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.empty-cart-content .btn {
+  margin-top: var(--spacing-md);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .cart-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .cart-section-title {
+    font-size: 1.25rem;
+  }
+  
+  .page-title {
+    font-size: 1.75rem;
+  }
+  
+  .summary-card {
+    position: static;
+    margin-bottom: var(--spacing-xl);
+  }
+}
