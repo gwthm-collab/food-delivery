@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import FoodItemCard from '../components/FoodItemCard';
-import restaurants from '../data/restaurants';
-import menuItems from '../data/menuItems';
 import '../styles/RestaurantDetails.css';
 
 const RestaurantDetails = () => {
@@ -13,24 +12,30 @@ const RestaurantDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API fetch
     setIsLoading(true);
-    
-    const timeoutId = setTimeout(() => {
-      const foundRestaurant = restaurants.find(r => r.id === parseInt(id));
-      const restaurantMenu = menuItems[id];
-      
-      setRestaurant(foundRestaurant);
-      setMenu(restaurantMenu);
-      
-      if (restaurantMenu && restaurantMenu.categories.length > 0) {
-        setActiveCategory(restaurantMenu.categories[0].id);
+
+    // Fetch restaurant details and menu from API
+    const fetchData = async () => {
+      try {
+        const [restaurantRes, menuRes] = await Promise.all([
+          axios.get(`https://localhost:7208/api/Restaurant/${id}`), // Replace with your API endpoint
+          axios.get(`https://localhost:7208/api/Restaurant/${id}/menu`) // Replace with your API endpoint
+        ]);
+        setRestaurant(restaurantRes.data);
+        setMenu(menuRes.data);
+
+        if (menuRes.data && menuRes.data.categories.length > 0) {
+          setActiveCategory(menuRes.data.categories[0].id);
+        }
+      } catch (error) {
+        setRestaurant(null);
+        setMenu(null);
+      } finally {
+        setIsLoading(false);
       }
-      
-      setIsLoading(false);
-    }, 500);
-    
-    return () => clearTimeout(timeoutId);
+    };
+
+    fetchData();
   }, [id]);
 
   if (isLoading) {

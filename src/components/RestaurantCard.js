@@ -29,9 +29,6 @@ const RestaurantCard = ({ restaurant }) => {
             <span className="delivery-time">
               <i className="fas fa-clock"></i> {deliveryTime}
             </span>
-            <span className="delivery-fee">
-              {deliveryFee === 0 ? 'Free Delivery' : `$${deliveryFee.toFixed(2)} delivery`}
-            </span>
           </div>
         </div>
       </div>

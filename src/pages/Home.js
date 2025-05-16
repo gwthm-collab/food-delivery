@@ -1,13 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import RestaurantCard from '../components/RestaurantCard';
-import restaurants from '../data/restaurants';
 import '../styles/Home.css';
 
 const Home = () => {
+  const [restaurants, setRestaurants] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCuisine, setSelectedCuisine] = useState('');
-  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch restaurants from API
+  useEffect(() => {
+    setIsLoading(true);
+    setError(null);
+    axios.get('https://localhost:7208/api/Restaurant') // Replace with your API endpoint
+      .then(response => {
+        setRestaurants(response.data);
+        setFilteredRestaurants(response.data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setError('Failed to load restaurants');
+        setIsLoading(false);
+      });
+  }, []);
 
   // Get unique cuisines for filter
   const cuisines = [...new Set(restaurants.map(restaurant => restaurant.cuisine))];
@@ -15,8 +34,7 @@ const Home = () => {
   // Filter restaurants based on search term and selected cuisine
   useEffect(() => {
     setIsLoading(true);
-    
-    // Simulate loading delay
+
     const timeoutId = setTimeout(() => {
       const filtered = restaurants.filter(restaurant => {
         const matchesSearch = restaurant.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -27,13 +45,13 @@ const Home = () => {
         
         return matchesSearch && matchesCuisine;
       });
-      
+
       setFilteredRestaurants(filtered);
       setIsLoading(false);
     }, 300);
-    
+
     return () => clearTimeout(timeoutId);
-  }, [searchTerm, selectedCuisine]);
+  }, [searchTerm, selectedCuisine, restaurants]);
 
   // Handle search input change
   const handleSearchChange = (e) => {
@@ -52,8 +70,7 @@ const Home = () => {
     <div className="home-page">
       <section className="hero-section">
         <div className="container">
-          <h1 className="hero-title">Food Delivery Made Easy</h1>
-          <p className="hero-subtitle">Order from your favorite restaurants with just a few clicks</p>
+          <h1 className="hero-title">Order Food Delivery</h1>
           
           <div className="search-bar">
             <i className="fas fa-search search-icon"></i>
